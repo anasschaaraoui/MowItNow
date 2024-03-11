@@ -27,7 +27,7 @@ public class TondeuseParser implements Parser<String, Tondeuse> {
     public Tondeuse parse(String input) throws ParsingException {
         logger.info("Parsing Tondeuse from input: {}", input);
         if(input != null && !input.trim().matches("\\d+ +\\d+ +[A-Z]")) {
-        	String errorMsg = "Pelouse dimensions doesn't matche the X Y (N|E|S|W) pattern";
+        	String errorMsg = "Tondeuse position doesn't matche the X Y (N|E|S|W) pattern";
             logger.error(errorMsg);
 			throw new ParsingException(errorMsg);
         }
@@ -38,7 +38,7 @@ public class TondeuseParser implements Parser<String, Tondeuse> {
             int y = Integer.parseInt(parts[1]);
             
             if(parts.length != 3) {
-				String errorMsg = "Pelouse dimensions must have x and y";
+				String errorMsg = "Tondeuse position must have x and y";
                 logger.error(errorMsg);
 				throw new ParsingException(errorMsg);
 			}

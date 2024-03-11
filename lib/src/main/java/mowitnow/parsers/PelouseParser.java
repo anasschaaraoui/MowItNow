@@ -1,6 +1,5 @@
 package mowitnow.parsers;
 
-import static java.lang.Character.SPACE_SEPARATOR;
 import static org.apache.commons.lang3.StringUtils.split;
 
 import org.apache.logging.log4j.LogManager;
@@ -27,6 +26,13 @@ public class PelouseParser implements Parser<String, Pelouse> {
 	@Override
 	public Pelouse parse(String input) throws ParsingException {
         logger.info("Parsing Pelouse from input: {}", input);
+        
+        if(input != null && !input.trim().matches("\\d+ +\\d+")) {
+        	String errorMsg = "Pelouse dimensions doesn't matche the X Y pattern";
+            logger.error(errorMsg);
+			throw new ParsingException(errorMsg);
+        }
+        
 		Pelouse pelouse;
 		try {
 			String[] dimensions = split(input);
