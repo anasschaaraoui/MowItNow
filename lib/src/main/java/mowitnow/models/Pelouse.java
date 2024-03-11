@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 public class Pelouse {
 	private static final Logger logger = LogManager.getLogger(Pelouse.class);
 
-	private Coordonnees coinSuperieurDroit;
+	private final Coordonnees coinSuperieurDroit;
 
 	/**
 	 * Constructs a Pelouse object with the specified top-right corner coordinates.
@@ -18,7 +18,7 @@ public class Pelouse {
 	 *                           lawn.
 	 */
 	public Pelouse(Coordonnees coinSuperieurDroit) {
-		this.coinSuperieurDroit = coinSuperieurDroit;
+		this.coinSuperieurDroit = new Coordonnees(coinSuperieurDroit.getX(), coinSuperieurDroit.getY());
 		logger.info("Pelouse created with top-right corner at {}", coinSuperieurDroit);
 	}
 

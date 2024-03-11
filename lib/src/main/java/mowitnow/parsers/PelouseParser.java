@@ -1,5 +1,8 @@
 package mowitnow.parsers;
 
+import static java.lang.Character.SPACE_SEPARATOR;
+import static org.apache.commons.lang3.StringUtils.split;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,9 +14,7 @@ import mowitnow.models.Pelouse;
 public class PelouseParser implements Parser<String, Pelouse> {
 	
     private static final Logger logger = LogManager.getLogger(PelouseParser.class);
-    
-	private static final String SPACE_DELIMITER = " ";
-
+        
 	/**
 	 * Parses the input string and returns a Pelouse object.
 	 *
@@ -26,8 +27,16 @@ public class PelouseParser implements Parser<String, Pelouse> {
 	@Override
 	public Pelouse parse(String input) throws ParsingException {
         logger.info("Parsing Pelouse from input: {}", input);
+		Pelouse pelouse;
 		try {
-			String[] dimensions = input.split(SPACE_DELIMITER);
+			String[] dimensions = split(input);
+			
+			if(dimensions.length != 2) {
+				String errorMsg = "Pelouse dimensions must have x and y";
+                logger.error(errorMsg);
+				throw new ParsingException(errorMsg);
+			}
+			
 			int width = Integer.parseInt(dimensions[0]);
 			int height = Integer.parseInt(dimensions[1]);
 			
@@ -38,12 +47,13 @@ public class PelouseParser implements Parser<String, Pelouse> {
 			}
 
 			Coordonnees coinSuperieurDroit = new Coordonnees(width, height);
-			Pelouse pelouse = new Pelouse(coinSuperieurDroit);
+			pelouse = new Pelouse(coinSuperieurDroit);
             logger.info("Successfully parsed Pelouse: {}", pelouse);
-            return pelouse;
 		} catch (Exception e) {
 			logger.error("Failed to parse Pelouse from input: {}", input);
 			throw new ParsingException(e, "Failed to parse Pelouse from input: %s", input);
 		}
+		
+		return pelouse;
 	}
 }

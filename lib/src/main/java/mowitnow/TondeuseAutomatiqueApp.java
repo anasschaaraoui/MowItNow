@@ -32,7 +32,7 @@ public class TondeuseAutomatiqueApp {
 	 * @param args Command line arguments. Expects the path to the input file.
 	 */
 	public static void main(String[] args) {
-		if (args.length == 0) {
+		if (args != null && args.length == 0) {
             logger.error("Usage: java TondeuseAutomatiqueApp <file_path>");
 			System.out.println("Usage: java Main <file_path>");
 			return;

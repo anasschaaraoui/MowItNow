@@ -58,7 +58,7 @@ class TondeuseAutomatiqueAppTest {
 	    System.setErr(new PrintStream(errContent));
 		String[] args = { "./src/test/resources/invalid_input.txt" };
 		TondeuseAutomatiqueApp.main(args);
-		assertTrue(errContent.toString().contains("Failed to parse Tondeuse from input:"));
+		assertTrue(errContent.toString().contains("Pelouse dimensions doesn't matche the X Y (N|E|S|W) pattern"));
 	    System.setErr(System.err);
 	}
 
