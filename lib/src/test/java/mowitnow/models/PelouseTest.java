@@ -39,6 +39,7 @@ class PelouseTest {
         assertFalse(pelouse.isValidPosition(new Coordonnees(-1, 0)));
         assertFalse(pelouse.isValidPosition(new Coordonnees(6, 5)));
         assertFalse(pelouse.isValidPosition(new Coordonnees(3, -2)));
+        assertFalse(pelouse.isValidPosition(new Coordonnees(3, -2)));
     }
 
 }

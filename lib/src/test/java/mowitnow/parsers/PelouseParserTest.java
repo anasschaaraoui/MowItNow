@@ -90,5 +90,17 @@ class PelouseParserTest {
         assertThrows(ParsingException.class, () -> parser.parse(nullInput),
                 "Parsing should throw ParsingException for null input");
     }
+    
+    /**
+     * Tests the parse method of the PelouseParser class with decimal dimensions.
+     */
+    @Test
+    void testParse_DecimalDimensions() {
+        PelouseParser parser = new PelouseParser();
+        
+        // Test input with negative dimensions
+        String input = "3.5 4.5";
+        assertThrows(ParsingException.class, () -> parser.parse(input), "Parsing should throw ParsingException for deciaml dimensions");
+    }
 
 }
